@@ -15,8 +15,19 @@ function App() {
 
 
 
+  function removeBodyClasses(){
+    document.body.classList.remove('bg-primary')
+    document.body.classList.remove('bg-success')
+    document.body.classList.remove('bg-warning')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-dark')
+  }
 
-  function changeTheme() {
+  function changeTheme(themeColor) {
+    console.log(themeColor)
+    removeBodyClasses()
+    document.body.classList.add('bg-'+themeColor)
     if (mode === 'dark') {
       setMode('light')
       document.body.style.backgroundColor = 'white'
@@ -67,12 +78,12 @@ const [btnTextOfAbout, setBtnTextOfAbout] = useState('Enable Dark Mode')
     <>
       <NavBar homeText='Home' aboutText='About' mode={mode} toggle={changeTheme} />
         <Alert alert={alert} ></Alert>
-        <TextForm mode={mode} showAlert={setAlertParams} />
-      {/* <Routes>
+        {/* <TextForm mode={mode} showAlert={setAlertParams} /> */}
+      <Routes>
         <Route path='/' element={<TextForm mode={mode} showAlert={setAlertParams} />
         } />
-        <Route path='about' element={<About myStyleOfAbout={myStyleOfAbout} btnTextOfAbout= {btnTextOfAbout} changeMode={toggleModeAbout }/>} />
-      </Routes> */}
+        <Route path='about' element={<About mode={mode} btnTextOfAbout= {btnTextOfAbout} changeMode={toggleModeAbout }/>} />
+      </Routes>
 
     </>
   );
